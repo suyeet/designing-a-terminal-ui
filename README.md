@@ -217,9 +217,3 @@ enforced decision protocol. Demo mode stays available for exploring the interfac
 
 Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). Licensed under
 the [MIT license](LICENSE).
-
-## Inspiration
-
-Inspired by [Kaja Škerlj’s terminal UI case study](https://www.kajaskerlj.com/work/terminal-ui), especially the problem of regaining context during long agent runs. Relay’s scenario, interface, copy, and decision workflow are an independent experiment, not a recreation of *codeplain or an affiliated product.
-
-Built using [Ink](https://github.com/vadimdemedes/ink). See [design assumptions](docs/design.md) and the [state model](docs/state-model.md).
