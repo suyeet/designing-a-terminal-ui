@@ -5,7 +5,8 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 
 // Exercise the artifact users actually install, outside the source checkout.
-// Offline mode uses the cache populated by npm ci; no registry publication.
+// Prefer cached dependencies, but allow missing registry metadata on fresh machines.
+// This installs a local tarball; it never publishes to the registry.
 const temp = mkdtempSync(path.join(tmpdir(), 'relay-package-'));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 try {
@@ -20,7 +21,7 @@ try {
 
   const prefix = path.join(temp, 'install');
   execFileSync(npm, [
-    'install', '--prefix', prefix, '--offline', '--ignore-scripts', '--no-audit', '--no-fund',
+    'install', '--prefix', prefix, '--prefer-offline', '--ignore-scripts', '--no-audit', '--no-fund',
     path.join(temp, packed.filename),
   ], {stdio: 'pipe'});
   const installed = path.join(prefix, 'node_modules', 'relay-agent-monitor');
@@ -56,7 +57,7 @@ try {
   const bad = spawnSync(bin, ['--not-a-real-option'], {encoding: 'utf8', cwd: temp, timeout: 15000});
   assert.equal(bad.status, 1);
   assert.match(bad.stderr, /Unknown option/);
-  console.log('Package smoke check passed: packed, installed offline, and ran the relay command outside the project.');
+  console.log('Package smoke check passed: packed, installed, and ran the relay command outside the project.');
 } finally {
   rmSync(temp, {recursive: true, force: true});
 }

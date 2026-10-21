@@ -13,9 +13,10 @@ npm run check
 npm run check:package
 ```
 
-The package check installs a temporary package offline using npm's dependency
-cache, exercises the installed `relay` executable, then removes the temporary
-installation. Run `npm ci` first to populate the cache.
+The package check installs a temporary package, preferring npm's dependency
+cache and downloading missing metadata or dependencies when needed. It exercises
+the installed `relay` executable, then removes the temporary installation.
+It requires network access on a fresh machine and never publishes a package.
 
 For a bug report, include your operating system, Node version, terminal size,
 steps to reproduce, expected behavior, and actual behavior. Remove secrets and
