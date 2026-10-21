@@ -1,0 +1,57 @@
+{
+  "name": "relay-agent-monitor",
+  "version": "0.3.0",
+  "private": true,
+  "description": "A terminal monitor for Codex activity, with a local read-only connector and demo mode.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "relay": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "docs/design.md",
+    "docs/state-model.md",
+    "docs/codex-connection.md",
+    "previews/*.svg"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --import tsx src/cli.tsx",
+    "dev": "node --watch --import tsx src/cli.tsx",
+    "build": "tsc -p tsconfig.build.json",
+    "start:built": "node dist/cli.js",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts tests/*.test.tsx",
+    "pretest": "npm run build",
+    "check": "npm run typecheck && npm test",
+    "check:package": "npm run build && node scripts/check-package.mjs",
+    "prepack": "npm run build",
+    "snapshot": "node --import tsx src/cli.tsx --snapshot",
+    "previews:themes": "npm run build && node scripts/theme-previews.mjs"
+  },
+  "dependencies": {
+    "ink": "8.0.0",
+    "react": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "ink-testing-library": "4.0.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suyeet/Designing-a-terminal-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/suyeet/Designing-a-terminal-ui/issues"
+  },
+  "homepage": "https://github.com/suyeet/Designing-a-terminal-ui#readme"
+}

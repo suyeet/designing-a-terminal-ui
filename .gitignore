@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+*.swp
+*.swo
+.env
+.env.*
+*.tgz
+.relay/
+.codex/hooks.json
+.codex/*.relay-backup-*
